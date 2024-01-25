@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css_temp/style.css' %}">
+</head>
+<body>
+
+
+<section id="impressum">
+    <div id="head">
+        <a id="home" href="/">Home</a>
+        <h1>Impressum</h1>
+    </div>
+    {% for item in data %}
+        <p><b>Verantwortlich: </b>{{ item.responsible }}</p>
+        <p><b>Kontakt: </b>{{ item.contact_us }}</p>
+        <p><b>Internet: </b>{{ item.internet }}</p>
+        <p><b>Telefon: </b>{{ item.telephone }}</p>
+    {% endfor %}
+</section>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css_temp/style.css' %}">
+</head>
+<body>
+
+
+<section id="impressum">
+    <div id="head">
+        <a id="home" href="/">Home</a>
+        <h1>Datenschutzerklärung - Wöschbacher Kebaphaus</h1>
+    </div>
+
+    {% for paragraph in content %}
+        <p>{{ paragraph }}</p>
+    {% endfor %}
+
+</section>
+
+</body>
+</html>

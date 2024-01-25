@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css_temp/style.css' %}">
+    <title></title>
+</head>
+<body>
+
+    <header>
+        <h1>Partyservice</h1>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/menu/">Menü</a>
+        <a href="/party_services/">Partyservice</a>
+        <a href="/gallery/">Galerie</a>
+        <a href="/blogs/">Blog</a>
+    </nav>
+
+    {% for party_service in party_services %}
+        <div id="blog">
+            <h2>{{ party_service.title_p }}</h2>
+
+            {% if party_service.media_file_p.url|lower|slice:"-4:" == '.jpg' or party_service.media_file_p.url|lower|slice:"-5:" == '.jpeg' or party_service.media_file_p.url|lower|slice:"-4:" == '.png' or party_service.media_file_p.url|lower|slice:"-4:" == '.gif' %}
+                <img src="{{ party_service.media_file_p.url }}" alt="{{ party_service.title_p }}">
+            {% elif party_service.media_file_p.url|lower|slice:"-4:" == '.mp4' or party_service.media_file_p.url|lower|slice:"-4:" == '.mov' or party_service.media_file_p.url|lower|slice:"-4:" == '.avi' %}
+                <video controls>
+                    <source src="{{ party_service.media_file_p.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% else %}
+                <p>Unsupported file type</p>
+            {% endif %}
+
+            <p>{{ party_service.text_p }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>

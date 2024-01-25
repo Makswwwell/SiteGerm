@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css_temp/style.css' %}">
+    <title></title>
+</head>
+<body>
+
+    <header>
+        <h1>Galerie</h1>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/menu/">Menü</a>
+        <a href="/party_services/">Partyservice</a>
+        <a href="/gallery/">Galerie</a>
+        <a href="/blogs/">Blog</a>
+    </nav>
+
+    <div class="dish-card">
+        {% for dish in dishes %}
+            <div class="dish-card-item">
+                <h2>{{ dish.name }}</h2>
+                <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

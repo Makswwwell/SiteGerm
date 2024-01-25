@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css_temp/style.css' %}">
+    <title></title>
+</head>
+<body>
+
+<header>
+    <h1>Menü</h1>
+</header>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/menu/">Menü</a>
+    <a href="/party_services/">Partyservice</a>
+    <a href="/gallery/">Galerie</a>
+    <a href="/blogs/">Blog</a>
+</nav>
+
+<main>
+    {% for section in sections.all|dictsort:"order" %}
+        <section>
+            {% if section.name or section.description or dish.custom_index %}
+            <div id="section">
+                {% if section.name %}
+                    <h1>{{ section.name }}</h1>
+                {% endif %}
+                <div id="description">
+                {% if section.description %}
+                    <h2>{{ section.description }}</h2>&nbsp;
+                {% endif %}
+                {% if section.custom_index %}
+                    <sup>{{ section.custom_index }}</sup>
+                {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            <ul>
+                {% for dish in section.dish_set.all %}
+                    <li>
+                        <div>
+                            <b>{{ dish.name }}</b>&nbsp;
+                            {% if dish.description %}
+                                {{ dish.description }}
+                            {% endif %}
+                            {% if dish.custom_index %}
+                            <sup>{{ dish.custom_index }}</sup>
+                            {% endif %}
+                        </div>
+                        <div id="price">
+                            <b>{{ dish.price }}€</b>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endfor %}
+</main>
+
+</body>
+</html>
